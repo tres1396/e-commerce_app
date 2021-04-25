@@ -66,7 +66,7 @@ router.put('/:id', (req, res) => {
 
 .then ((tagData) => {
   if (!tagData) {
-    res.status(400).json({message: "No category found with that id"})
+    res.status(400).json({message: "No tag found with that id"})
     return;
   }
   res.json(tagData);
@@ -79,6 +79,22 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
+  Category.destroy({
+    where: {
+      id: req.params.id,
+    }
+  })
+  .then((tagData) => {
+    if (!tagData) {
+      res.status(404).json({message: "No category found with that id"});
+      return;
+    }
+    res.json(tagData);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
