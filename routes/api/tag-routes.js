@@ -64,12 +64,12 @@ router.put('/:id', (req, res) => {
     },
 })
 
-.then ((categoryData) => {
-  if (!categoryData) {
+.then ((tagData) => {
+  if (!tagData) {
     res.status(400).json({message: "No category found with that id"})
     return;
   }
-  res.json(categoryData);
+  res.json(tagData);
 })
 .catch((err) => {
   console.log(err);
